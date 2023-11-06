@@ -1,0 +1,14 @@
+apiVersion: nais.io/v1
+kind: Naisjob
+metadata:
+  labels:
+    team: pia
+  name: pia-jobbsender
+  namespace: pia
+spec:
+  image: {{ image }}
+  kafka:
+    pool: {{ kafkaPool }}
+  env:
+    - name: JOBB
+      value: {{ JOBB }}

@@ -1,0 +1,87 @@
+name: Deploy to NAIS
+on:
+  workflow_dispatch:
+    inputs:
+      cluster-name:
+        description: 'Cluster som det skal deployes til'
+        required: true
+        default: 'dev-gcp'
+        type: choice
+        options:
+          - 'prod-gcp'
+          - 'dev-gcp'
+      job-name:
+        description: 'Jobb som skal kjøres'
+        required: true
+        type: choice
+        options:
+          - 'iaSakEksport'
+          - 'iaSakStatistikkEksport'
+          - 'iaSakStatusExport'
+          - 'iaSakLeveranseEksport'
+          - 'næringsImport'
+
+jobs:
+  build:
+    permissions:
+      packages: write
+      contents: write
+      id-token: write
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
+          restore-keys: ${{ runner.os }}-gradle-
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Setup Gradle to generate and submit dependency graphs
+        uses: gradle/gradle-build-action@v2.9.0
+        with:
+          dependency-graph: generate-and-submit
+      - name: Compile, run tests and build
+        run: ./gradlew build
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and push docker image
+        uses: nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: pia
+          tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+    outputs:
+      image: ${{ steps.docker-push.outputs.image }}
+
+  deploy:
+    permissions: { }
+    name: Deploy app to ${{ github.event.inputs.cluster-name  }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          JOBB: ${{ github.event.inputs.job-name  }}
+          IMAGE: ${{ needs.build.outputs.image }}
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ github.event.inputs.cluster-name  }}
+          RESOURCE: .nais/nais.yaml
+          VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
+
+
+
+
+#  ${{ github.event.inputs.cluster-name }}

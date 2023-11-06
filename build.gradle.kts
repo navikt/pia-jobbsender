@@ -1,11 +1,10 @@
 plugins {
     kotlin("jvm") version "1.9.20"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     application
 }
 
 group = "no.nav"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
@@ -26,4 +25,16 @@ kotlin {
 
 application {
     mainClass.set("MainKt")
+}
+
+tasks {
+    shadowJar {
+        manifest {
+            attributes(Pair("Main-Class", "MainKt"))
+        }
+    }
+
+    withType<Test>{
+        dependsOn(shadowJar)
+    }
 }
