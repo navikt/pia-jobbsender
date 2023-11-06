@@ -3,9 +3,12 @@ pia-jobbsender
 
 Naisjobb som sender forespøsler om engangsjobber til PIA sine applikasjoner via kafka.
 
-# Komme i gang
+# Starte jobb
 
-TODO
+Jobber kan startes via [github actions](https://github.com/navikt/pia-jobbsender/actions) i repoet på github.
+Trykk inn på "Deploy to nais" workflow i venstre meny og velg "Run workflow" for å starte en jobb.
+Velg deretter ønsket cluster det skal kjøres mot, og hvilken jobb som skal requestes.
+
 
 ---
 
