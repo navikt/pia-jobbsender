@@ -75,14 +75,9 @@ jobs:
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
         uses: nais/deploy/actions/deploy@v1
         env:
-          JOBB: ${{ github.event.inputs.job-name  }}
           IMAGE: ${{ needs.build.outputs.image }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
-
-
-
-
-#  ${{ github.event.inputs.cluster-name }}
+          VAR: JOBB=${{ github.event.inputs.job-name  }}
