@@ -13,4 +13,4 @@ spec:
     - name: JOBB
       value: {{ JOBB }}
     - name: JOBBLYTTER_TOPIC
-      value: jobblytter-v1
+      value: pia.jobblytter-v1
