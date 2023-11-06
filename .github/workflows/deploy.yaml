@@ -1,0 +1,40 @@
+name: Deploy to NAIS
+on:
+  workflow_dispatch:
+    inputs:
+      cluster-name:
+        description: 'Cluster som det skal deployes til'
+        required: true
+        default: 'dev-gcp'
+        type: choice
+        options:
+          - 'prod-gcp'
+          - 'dev-gcp'
+      job-name:
+        description: 'Jobb som skal kjøres'
+        required: true
+        default: 'næringsImport'
+        type: choice
+        options:
+          - 'iaSakEksport'
+          - 'iaSakStatistikkEksport'
+          - 'iaSakStatusExport'
+          - 'iaSakLeveranseEksport'
+          - 'næringsImport'
+
+jobs:
+  deploy:
+    permissions: { }
+    name: Deploy app to ${{ github.event.inputs.cluster-name  }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ github.event.inputs.cluster-name  }}
+          RESOURCE: .nais/nais.yaml
+          VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
+          VAR: JOBB=${{ github.event.inputs.job-name  }}
