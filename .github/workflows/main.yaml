@@ -13,6 +13,7 @@ on:
       job-name:
         description: 'Jobb som skal kjøres'
         required: true
+        default: 'næringsImport'
         type: choice
         options:
           - 'iaSakEksport'
