@@ -12,3 +12,5 @@ spec:
   env:
     - name: JOBB
       value: {{ JOBB }}
+    - name: JOBBLYTTER_TOPIC
+      value: jobblytter-v1
