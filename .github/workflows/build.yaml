@@ -44,3 +44,22 @@ jobs:
           tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+    outputs:
+      image: ${{ steps.docker-push.outputs.image }}
+
+  trivy-scan:
+    name: Scanner docker image med Trivy
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    permissions:
+      contents: read # to write sarif
+      security-events: write # push sarif to github security
+      id-token: write # for nais/login
+    runs-on: ubuntu-latest
+    steps:
+      - uses: navikt/pia-actions/trivy-scan@v1 # https://github.com/navikt/pia-actions/tree/main/trivy-scan
+        with:
+          image: ${{ needs.build.outputs.image }}
+          team: pia
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
