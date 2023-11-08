@@ -25,7 +25,7 @@ on:
 jobs:
   deploy:
     permissions: { }
-    name: Deploy app to ${{ github.event.inputs.cluster-name  }}
+    name: Deployer jobb "${{ github.event.inputs.job-name  }}" til "${{ github.event.inputs.cluster-name  }}"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
