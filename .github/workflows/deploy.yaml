@@ -21,6 +21,7 @@ on:
           - 'iaSakStatusExport'
           - 'iaSakLeveranseEksport'
           - 'næringsImport'
+          - 'materializedViewOppdatering'
 
 jobs:
   deploy:
