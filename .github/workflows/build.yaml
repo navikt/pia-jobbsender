@@ -47,6 +47,41 @@ jobs:
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
+  deploy-nattlig-til-dev:
+    permissions: { }
+    name: Deployer jobb materializedViewOppdatering til dev-gcp
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy application to dev-gcp
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/dev-gcp.yaml
+          VAR: JOBB=materializedViewOppdatering
+
+  deploy-nattlig-til-prod:
+    permissions: { }
+    name: Deployer jobb materializedViewOppdatering til prod-gcp
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy application to prod-gcp
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/prod-gcp.yaml
+          VAR: JOBB=materializedViewOppdatering
+
   trivy-scan:
     name: Scanner docker image med Trivy
     if: github.ref == 'refs/heads/main'
