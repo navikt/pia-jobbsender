@@ -8,8 +8,8 @@ class KafkaConfig(
     val truststoreLocation: String = getEnvVar("KAFKA_TRUSTSTORE_PATH"),
     val keystoreLocation: String = getEnvVar("KAFKA_KEYSTORE_PATH"),
     val credstorePassword: String = getEnvVar("KAFKA_CREDSTORE_PASSWORD"),
+    val clientId: String = getEnvVar("KAFKA_CLIENT_ID"),
     val jobblytterTopic: String = getEnvVar("JOBBLYTTER_TOPIC"),
-    val clientId: String = "pia-jobblytter"
 )
 {
     fun producerProperties(): Map<String, Any> {

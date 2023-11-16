@@ -14,3 +14,5 @@ spec:
       value: {{ JOBB }}
     - name: JOBBLYTTER_TOPIC
       value: pia.jobblytter-v1
+    - name: KAFKA_CLIENT_ID
+      value: pia-jobbsender
