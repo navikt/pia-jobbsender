@@ -7,7 +7,7 @@ metadata:
   namespace: pia
 spec:
   image: {{ image }}
-  schedule: "* 0/10 * * *" # Kjør hver 10. minutt
+  schedule: "* 0,10,20,30,40,50 * * *" # Kjør hver 10. minutt
   timeZone: "UTC"
   kafka:
     pool: {{ kafkaPool }}

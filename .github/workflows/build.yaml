@@ -49,7 +49,7 @@ jobs:
 
   deploy-nattlig-til-dev:
     permissions: { }
-    name: Deployer jobb materializedViewOppdatering til dev-gcp
+    name: Deployer nattlig jobb til dev-gcp
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -66,7 +66,7 @@ jobs:
 
   deploy-nattlig-til-prod:
     permissions: { }
-    name: Deployer jobb materializedViewOppdatering til prod-gcp
+    name: Deployer nattlig jobb til prod-gcp
     if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
