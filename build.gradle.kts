@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation("org.apache.kafka:kafka-clients:3.6.0")
-    implementation("ch.qos.logback:logback-classic:1.4.11")
+    implementation("ch.qos.logback:logback-classic:1.4.12")
     implementation("net.logstash.logback:logstash-logback-encoder:7.4")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.8.10")
 }
