@@ -16,6 +16,7 @@ on:
         default: 'næringsImport'
         type: choice
         options:
+          - 'ryddeIUrørteSaker'
           - 'iaSakEksport'
           - 'iaSakStatistikkEksport'
           - 'iaSakStatusExport'
