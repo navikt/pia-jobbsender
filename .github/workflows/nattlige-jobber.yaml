@@ -1,0 +1,44 @@
+name: Deploy nattlige jobber til NAIS
+on:
+  workflow_run:
+    workflows: [Bygg image og push til GAR]
+    types: [completed]
+
+jobs:
+  deploy-oppdater-view:
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    permissions: { }
+    name: Deployer nattlig view-oppdatering til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=materializedViewOppdatering
+
+  deploy-rydde-urorte-saker:
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    permissions: { }
+    name: Deployer nattlig ryddejobb til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=ryddeIUrørteSaker

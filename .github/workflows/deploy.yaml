@@ -1,4 +1,4 @@
-name: Deploy to NAIS
+name: Manuell kjøring av jobb
 on:
   workflow_dispatch:
     inputs:
@@ -16,13 +16,13 @@ on:
         default: 'næringsImport'
         type: choice
         options:
-          - 'ryddeIUrørteSakerTørrKjør'
           - 'iaSakEksport'
           - 'iaSakStatistikkEksport'
           - 'iaSakStatusExport'
           - 'iaSakLeveranseEksport'
           - 'næringsImport'
           - 'materializedViewOppdatering'
+          - 'ryddeIUrørteSaker'
 
 jobs:
   deploy:
