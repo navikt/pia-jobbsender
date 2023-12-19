@@ -3,7 +3,7 @@ kind: Naisjob
 metadata:
   labels:
     team: pia
-  name: pia-jobbsender-nattlig
+  name: pia-jobbsender-nattlig-{{ JOBB }}
   namespace: pia
 spec:
   image: {{ image }}
