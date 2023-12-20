@@ -22,7 +22,7 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_nattlig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: JOBB=materializedViewOppdatering
+          VAR: JOBB=materializedViewOppdatering,JOBB_NAVN_NAISVENNLIG=oppdater-view
 
   deploy-rydde-urorte-saker:
     strategy:
@@ -41,4 +41,4 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_nattlig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: JOBB=ryddeIUrørteSaker
+          VAR: JOBB=ryddeIUrørteSaker,JOBB_NAVN_NAISVENNLIG=rydde-urorte-saker

@@ -3,7 +3,8 @@ kind: Naisjob
 metadata:
   labels:
     team: pia
-  name: pia-jobbsender-nattlig-${{ JOBB == 'materializedViewOppdatering' && 'materialized-view-oppdatering' || 'rydde-i-urorte-saker' }}
+  name: pia-jobbsender-{{ JOBB_NAVN_NAISVENNLIG }}
+
   namespace: pia
 spec:
   image: {{ image }}
