@@ -14,7 +14,7 @@ jobs:
     name: Deployer nattlig view-oppdatering til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v1
         env:
@@ -34,7 +34,7 @@ jobs:
     name: Deployer nattlig ryddejobb til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v1
         env:
