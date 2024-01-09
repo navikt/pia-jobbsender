@@ -10,16 +10,16 @@ jobs:
     strategy:
       matrix:
         cluster: [dev, prod]
-    permissions: { }
+    permissions:
+      id-token: write
     name: Deployer nattlig view-oppdatering til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Deploy application to ${{ matrix.cluster }}-gcp
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_nattlig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
@@ -30,16 +30,16 @@ jobs:
     strategy:
       matrix:
         cluster: [dev, prod]
-    permissions: { }
+    permissions:
+      id-token: write
     name: Deployer nattlig ryddejobb til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Deploy application to ${{ matrix.cluster }}-gcp
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_nattlig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
