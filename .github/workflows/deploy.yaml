@@ -23,6 +23,7 @@ on:
           - 'næringsImport'
           - 'materializedViewOppdatering'
           - 'ryddeIUrørteSaker'
+          - 'importSykefraværKvartalsstatistikk'
 
 jobs:
   deploy:
