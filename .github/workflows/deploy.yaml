@@ -23,7 +23,6 @@ on:
           - 'næringsImport'
           - 'materializedViewOppdatering'
           - 'ryddeIUrørteSaker'
-          - 'importSykefraværKvartalsstatistikk'
           - 'alleKategorierSykefraværsstatistikkDvhImport'
           - 'landSykefraværsstatistikkDvhImport'
           - 'sektorSykefraværsstatistikkDvhImport'
