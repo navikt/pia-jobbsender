@@ -30,6 +30,7 @@ on:
           - 'næringskodeSykefraværsstatistikkDvhImport'
           - 'virksomhetSykefraværsstatistikkDvhImport'
           - 'virksomhetMetadataSykefraværsstatistikkDvhImport'
+          - 'publiseringsdatoDvhImport'
 
 jobs:
   deploy:
