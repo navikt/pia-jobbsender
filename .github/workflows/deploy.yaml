@@ -33,6 +33,7 @@ on:
           - 'virksomhetSykefraværsstatistikkDvhImport'
           - 'virksomhetMetadataSykefraværsstatistikkDvhImport'
           - 'publiseringsdatoDvhImport'
+          - 'kalkulerResulterendeStatusForHendelser'
 
 jobs:
   deploy:
