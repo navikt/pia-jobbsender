@@ -20,6 +20,7 @@ on:
           - 'iaSakStatistikkEksport'
           - 'iaSakStatusExport'
           - 'iaSakLeveranseEksport'
+          - 'iaSakSamarbeidsplanEksport'
           - 'næringsImport'
           - 'materializedViewOppdatering'
           - 'ryddeIUrørteSaker'
