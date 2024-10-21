@@ -21,6 +21,8 @@ on:
           - 'iaSakStatusExport'
           - 'iaSakLeveranseEksport'
           - 'iaSakSamarbeidsplanEksport'
+          - 'iaSakSamarbeidEksport'
+          - 'iaSakBehovsvurderingEksport'
           - 'næringsImport'
           - 'materializedViewOppdatering'
           - 'ryddeIUrørteSaker'
