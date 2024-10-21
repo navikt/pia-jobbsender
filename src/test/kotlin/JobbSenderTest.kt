@@ -8,8 +8,8 @@ class JobbSenderTest {
             keystoreLocation = "",
             credstorePassword = "",
             jobblytterTopic = "",
-            clientId = ""
-        )
+            clientId = "",
+        ),
     )
 
     @Test

@@ -7,9 +7,9 @@ fun main() {
     logger.info("Ber om kjøring av jobb ${applikasjonsConfig.jobb} til applikasjon ${applikasjonsConfig.applikasjon}")
 
     JobbSender(
-        kafkaConfig = KafkaConfig()
+        kafkaConfig = KafkaConfig(),
     ).sendJobb(
-        applikasjonsConfig = applikasjonsConfig
+        applikasjonsConfig = applikasjonsConfig,
     )
 
     logger.info("Ferdig med å sende jobb")

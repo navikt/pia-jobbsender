@@ -10,8 +10,7 @@ class KafkaConfig(
     val credstorePassword: String = getEnvVar("KAFKA_CREDSTORE_PASSWORD"),
     val clientId: String = getEnvVar("KAFKA_CLIENT_ID"),
     val jobblytterTopic: String = getEnvVar("JOBBLYTTER_TOPIC"),
-)
-{
+) {
     fun producerProperties(): Map<String, Any> {
         val producerConfigs = mutableMapOf(
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to brokers,
@@ -19,7 +18,7 @@ class KafkaConfig(
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
             ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG to true, // Den sikrer rekkefølge
             ProducerConfig.ACKS_CONFIG to "all", // Den sikrer at data ikke mistes
-            ProducerConfig.CLIENT_ID_CONFIG to clientId
+            ProducerConfig.CLIENT_ID_CONFIG to clientId,
         )
         if (truststoreLocation.isNotEmpty()) {
             producerConfigs.putAll(securityConfigs())
@@ -37,14 +36,16 @@ class KafkaConfig(
             SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG to credstorePassword,
             SslConfigs.SSL_KEYSTORE_LOCATION_CONFIG to keystoreLocation,
             SslConfigs.SSL_KEYSTORE_PASSWORD_CONFIG to credstorePassword,
-            SslConfigs.SSL_KEY_PASSWORD_CONFIG to credstorePassword
+            SslConfigs.SSL_KEY_PASSWORD_CONFIG to credstorePassword,
         )
 }
 
 class ApplikasjonsConfig(
     val jobb: String = getEnvVar("JOBB"),
-    val applikasjon: String = "pia-jobbsender"
+    val applikasjon: String = "pia-jobbsender",
 )
 
-fun getEnvVar(varName: String, defaultValue: String? = null) =
-    System.getenv(varName) ?: defaultValue ?: throw RuntimeException("Missing required variable $varName")
+fun getEnvVar(
+    varName: String,
+    defaultValue: String? = null,
+) = System.getenv(varName) ?: defaultValue ?: throw RuntimeException("Missing required variable $varName")

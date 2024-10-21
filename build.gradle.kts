@@ -35,7 +35,7 @@ tasks {
         }
     }
 
-    withType<Test>{
+    withType<Test> {
         dependsOn(shadowJar)
     }
 }
