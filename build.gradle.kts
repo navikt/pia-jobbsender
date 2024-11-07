@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.0.21"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     application
 }
@@ -10,10 +10,10 @@ repositories {
 }
 
 dependencies {
-    implementation("org.apache.kafka:kafka-clients:3.8.0")
-    implementation("ch.qos.logback:logback-classic:1.5.8")
+    implementation("org.apache.kafka:kafka-clients:3.9.0")
+    implementation("ch.qos.logback:logback-classic:1.5.12")
     implementation("net.logstash.logback:logstash-logback-encoder:8.0")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:2.0.20")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.0.21")
 }
 
 tasks.test {
