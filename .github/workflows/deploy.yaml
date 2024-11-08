@@ -36,6 +36,12 @@ on:
           - 'virksomhetMetadataSykefraværsstatistikkDvhImport'
           - 'publiseringsdatoDvhImport'
           - 'kalkulerResulterendeStatusForHendelser'
+          - 'engangsJobb'
+      parameter-value:
+        description: 'Valgfri parameter'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   deploy:
@@ -52,4 +58,4 @@ jobs:
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
-          VAR: JOBB=${{ github.event.inputs.job-name  }}
+          VAR: JOBB=${{ github.event.inputs.job-name  }},PARAMETER=${{ github.event.inputs.parameter-value }}

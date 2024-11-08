@@ -13,7 +13,7 @@ class JobbSender(
                 ProducerRecord(
                     kafkaConfig.jobblytterTopic,
                     applikasjonsConfig.jobb,
-                    jsonifiser(applikasjonsConfig.jobb, applikasjonsConfig.applikasjon),
+                    jsonifiser(applikasjonsConfig.jobb, applikasjonsConfig.applikasjon, applikasjonsConfig.parameter),
                 ),
             )
         }
@@ -22,10 +22,12 @@ class JobbSender(
     fun jsonifiser(
         jobb: String,
         applikasjon: String,
+        parameter: String
     ) = """
         {
             "jobb": "$jobb",
             "applikasjon": "$applikasjon",
+            "parameter": "$parameter",
             "tidspunkt": "${Clock.systemUTC().instant()}"
         }
         """.trimIndent()

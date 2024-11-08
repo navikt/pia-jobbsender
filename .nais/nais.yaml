@@ -12,6 +12,8 @@ spec:
   env:
     - name: JOBB
       value: {{ JOBB }}
+    - name: PARAMETER
+      value: {{ PARAMETER }}
     - name: JOBBLYTTER_TOPIC
       value: pia.jobblytter-v1
     - name: KAFKA_CLIENT_ID

@@ -42,6 +42,7 @@ class KafkaConfig(
 
 class ApplikasjonsConfig(
     val jobb: String = getEnvVar("JOBB"),
+    val parameter: String = getEnvVar("PARAMETER", ""),
     val applikasjon: String = "pia-jobbsender",
 )
 
