@@ -23,6 +23,7 @@ on:
           - 'iaSakSamarbeidsplanEksport'
           - 'iaSakSamarbeidEksport'
           - 'iaSakBehovsvurderingEksport'
+          - 'iaSakSamarbeidsplanBigqueryEksport'
           - 'næringsImport'
           - 'materializedViewOppdatering'
           - 'ryddeIUrørteSaker'
