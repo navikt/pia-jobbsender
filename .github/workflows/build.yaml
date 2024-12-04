@@ -14,18 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: gradle/wrapper-validation-action@v2
-      - uses: actions/cache@v4
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
-          restore-keys: ${{ runner.os }}-gradle-
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
-      - name: Setup Gradle to generate and submit dependency graphs
-        uses: gradle/actions/setup-gradle@v3
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
         with:
           dependency-graph: generate-and-submit
       - name: Compile, run tests and build
@@ -39,8 +32,6 @@ jobs:
       - name: Build and push docker image
         uses: nais/docker-build-push@v0
         id: docker-push
-        env:
-          TRIVY_JAVA_DB_REPOSITORY: "public.ecr.aws/aquasecurity/trivy-java-db:1"
         with:
           team: pia
           tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
