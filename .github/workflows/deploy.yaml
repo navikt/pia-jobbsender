@@ -22,7 +22,8 @@ on:
           - 'iaSakLeveranseEksport'
           - 'iaSakSamarbeidsplanEksport'
           - 'iaSakSamarbeidEksport'
-          - 'iaSakBehovsvurderingEksport'
+          - 'iaSakSamarbeidBigQueryEksport',
+          - 'spørreundersøkelseBigQueryEksport',
           - 'iaSakSamarbeidsplanBigqueryEksport'
           - 'næringsImport'
           - 'materializedViewOppdatering'
