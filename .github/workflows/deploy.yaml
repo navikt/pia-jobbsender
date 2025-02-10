@@ -34,6 +34,7 @@ on:
           - 'sektorSykefraværsstatistikkDvhImport'
           - 'næringSykefraværsstatistikkDvhImport'
           - 'næringskodeSykefraværsstatistikkDvhImport'
+          - 'bransjeSykefraværsstatistikkDvhImport'
           - 'virksomhetSykefraværsstatistikkDvhImport'
           - 'virksomhetMetadataSykefraværsstatistikkDvhImport'
           - 'publiseringsdatoDvhImport'
