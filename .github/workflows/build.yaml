@@ -35,8 +35,6 @@ jobs:
         with:
           team: pia
           tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
@@ -54,6 +52,4 @@ jobs:
         with:
           image: ${{ needs.build.outputs.image }}
           team: pia
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           upload-artifact: true
