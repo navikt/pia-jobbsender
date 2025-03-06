@@ -9,6 +9,16 @@ spec:
   image: {{ image }}
   kafka:
     pool: {{ kafkaPool }}
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
+      destinations:
+        - id: "grafana-lgtm"
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
   env:
     - name: JOBB
       value: {{ JOBB }}
