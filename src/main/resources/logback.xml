@@ -3,7 +3,11 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
+    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.mdc.v1_0.OpenTelemetryAppender">
+        <appender-ref ref="stdout_json" />
+    </appender>
+
     <root level="INFO">
-        <appender-ref ref="stdout_json"/>
+        <appender-ref ref="OTEL" />
     </root>
 </configuration>
