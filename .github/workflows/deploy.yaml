@@ -22,6 +22,7 @@ on:
           - 'iaSakLeveranseEksport'
           - 'iaSakSamarbeidsplanEksport'
           - 'iaSakSamarbeidEksport'
+          - 'iaSakSamarbeidEksportEttSamarbeid'
           - 'iaSakSamarbeidBigQueryEksport'
           - 'spørreundersøkelseBigQueryEksport'
           - 'iaSakSamarbeidsplanBigqueryEksport'
