@@ -54,7 +54,7 @@ jobs:
     name: Deployer jobb "${{ github.event.inputs.job-name  }}" til "${{ github.event.inputs.cluster-name  }}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
         uses: nais/deploy/actions/deploy@v2
         env:
