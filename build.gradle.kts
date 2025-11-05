@@ -4,8 +4,7 @@ val opentelemetryLogbackMdcVersion = "2.16.0-alpha"
 
 plugins {
     kotlin("jvm") version "2.2.10"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    application
+    id("application")
 }
 
 group = "no.nav"
@@ -31,16 +30,4 @@ kotlin {
 
 application {
     mainClass.set("MainKt")
-}
-
-tasks {
-    shadowJar {
-        manifest {
-            attributes(Pair("Main-Class", "MainKt"))
-        }
-    }
-
-    withType<Test> {
-        dependsOn(shadowJar)
-    }
 }
