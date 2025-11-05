@@ -1,9 +1,9 @@
-val logbackVersion = "1.5.18"
-val logstashLogbackEncoderVersion = "8.1"
+val logbackVersion = "1.5.20"
+val logstashLogbackEncoderVersion = "9.0"
 val opentelemetryLogbackMdcVersion = "2.16.0-alpha"
 
 plugins {
-    kotlin("jvm") version "2.2.10"
+    kotlin("jvm") version "2.2.21"
     id("application")
 }
 
@@ -13,11 +13,11 @@ repositories {
 }
 
 dependencies {
-    implementation("org.apache.kafka:kafka-clients:4.0.0")
+    implementation("org.apache.kafka:kafka-clients:4.1.0")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     implementation("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:$opentelemetryLogbackMdcVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:2.2.10")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.2.21")
 }
 
 tasks.test {
