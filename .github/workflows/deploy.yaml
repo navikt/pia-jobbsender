@@ -18,7 +18,6 @@ on:
         options:
           - 'iaSakEksport'
           - 'iaSakStatistikkEksport'
-          - 'iaSakStatusExport'
           - 'iaSakLeveranseEksport'
           - 'iaSakSamarbeidsplanEksport'
           - 'iaSakSamarbeidEksport'
