@@ -57,7 +57,7 @@ jobs:
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
         uses: nais/deploy/actions/deploy@v2
         env:
-          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml

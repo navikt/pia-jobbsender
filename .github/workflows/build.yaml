@@ -34,7 +34,6 @@ jobs:
         id: docker-push
         with:
           team: pia
-          tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
