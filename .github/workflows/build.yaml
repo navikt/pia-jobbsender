@@ -4,10 +4,12 @@ on:
     branches:
       - main
 
+
+permissions: {}
+
 jobs:
   build:
     permissions:
-      packages: write
       contents: write
       id-token: write
     name: build
@@ -34,6 +36,7 @@ jobs:
         id: docker-push
         with:
           team: pia
+          tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
