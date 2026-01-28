@@ -1,4 +1,4 @@
-val logbackVersion = "1.5.24"
+val logbackVersion = "1.5.26"
 val logstashLogbackEncoderVersion = "9.0"
 val opentelemetryLogbackMdcVersion = "2.16.0-alpha"
 
@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     // Kafka
-    implementation("at.yawk.lz4:lz4-java:1.10.2")
+    implementation("at.yawk.lz4:lz4-java:1.10.3")
     implementation("org.apache.kafka:kafka-clients:4.1.1") {
         // "Fikser CVE-2025-12183 - lz4-java >1.8.1 har sårbar versjon (transitive dependency fra kafka-clients:4.1.0)"
         exclude("org.lz4", "lz4-java")
