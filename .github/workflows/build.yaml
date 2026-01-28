@@ -40,6 +40,47 @@ jobs:
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
+  deploy-oppdater-view:
+    needs: build
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    permissions:
+      id-token: write
+    name: Deployer nattlig view-oppdatering til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          IMAGE: ${{ needs.build.outputs.image }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=materializedViewOppdatering,JOBB_NAVN_NAISVENNLIG=oppdater-view
+
+  deploy-rydde-urorte-saker:
+    needs: build
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    permissions:
+      id-token: write
+    name: Deployer nattlig ryddejobb til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          IMAGE: ${{ needs.build.outputs.image }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=ryddeIUrørteSaker,JOBB_NAVN_NAISVENNLIG=rydde-urorte-saker
+
+
   trivy-scan:
     name: Scanner docker image med Trivy
     if: github.ref == 'refs/heads/main'
