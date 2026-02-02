@@ -39,6 +39,8 @@ on:
           - 'virksomhetMetadataSykefraværsstatistikkDvhImport'
           - 'publiseringsdatoDvhImport'
           - 'kalkulerResulterendeStatusForHendelser'
+          - 'prosesserPlanlagtHendelse'
+          - 'prosesserPlanlagteHendelser'
           - 'engangsJobb'
       parameter-value:
         description: 'Valgfri parameter'
