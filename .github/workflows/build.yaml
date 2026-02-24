@@ -80,6 +80,26 @@ jobs:
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
           VAR: JOBB=ryddeIUrørteSaker,JOBB_NAVN_NAISVENNLIG=rydde-urorte-saker
 
+  deploy-prosesser-planlagte-hendelser:
+    needs: build
+    strategy:
+      matrix:
+        cluster: [dev]
+    permissions:
+      id-token: write
+    name: Deployer nattlig prosessering av planlagte hendelser til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          IMAGE: ${{ needs.build.outputs.image }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_nattlig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=prosesserPlanlagteHendelser,JOBB_NAVN_NAISVENNLIG=prosesser-planlagte-hendelser
+
 
   trivy-scan:
     name: Scanner docker image med Trivy
