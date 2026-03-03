@@ -41,6 +41,7 @@ on:
           - 'kalkulerResulterendeStatusForHendelser'
           - 'prosesserPlanlagtHendelse'
           - 'prosesserPlanlagteHendelser'
+          - 'migrerEnVirksomhetTilNyFlyt'
           - 'engangsJobb'
       parameter-value:
         description: 'Valgfri parameter'
