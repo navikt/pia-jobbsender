@@ -15,7 +15,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -50,7 +50,7 @@ jobs:
     name: Deployer nattlig view-oppdatering til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -70,7 +70,7 @@ jobs:
     name: Deployer nattlig ryddejobb til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -90,7 +90,7 @@ jobs:
     name: Deployer nattlig prosessering av planlagte hendelser til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:

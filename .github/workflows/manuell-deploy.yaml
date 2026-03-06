@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
         uses: nais/deploy/actions/deploy@v2
         env:
