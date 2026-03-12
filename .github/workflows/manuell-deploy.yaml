@@ -42,6 +42,7 @@ on:
           - 'prosesserPlanlagtHendelse'
           - 'prosesserPlanlagteHendelser'
           - 'migrerEnVirksomhetTilNyFlyt'
+          - 'migrerAlleVirksomheterTilNyFlyt'
           - 'engangsJobb'
       parameter-value:
         description: 'Valgfri parameter'
