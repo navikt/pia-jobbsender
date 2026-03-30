@@ -3,7 +3,7 @@ val logstashLogbackEncoderVersion = "9.0"
 val opentelemetryLogbackMdcVersion = "2.26.0-alpha"
 
 plugins {
-    kotlin("jvm") version "2.3.10"
+    kotlin("jvm") version "2.3.20"
     id("application")
 }
 
@@ -22,7 +22,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     implementation("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:$opentelemetryLogbackMdcVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.10")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.20")
 
     constraints {
         implementation("tools.jackson.core:jackson-core") {
