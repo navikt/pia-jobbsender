@@ -66,4 +66,4 @@ jobs:
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
-          VAR: JOBB=${{ github.event.inputs.job-name  }},PARAMETER=${{ github.event.inputs.parameter-value }}
+          VAR: JOBB=${{ github.event.inputs.job-name  }},PARAMETER=${{ github.event.inputs.parameter-value }},RUN_ID=${{ github.run_id }}
