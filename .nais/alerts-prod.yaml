@@ -1,0 +1,42 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pia-jobbsender
+  namespace: pia
+  labels:
+    team: pia
+    created-by: pia
+spec:
+  groups:
+    - name: pia-jobbsender-alerts
+      rules:
+        - alert: [pia-jobbsender-oppdater-view] Har ikke sendt jobb-melding 'materializedViewOppdatering'
+          expr: time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-oppdater-view.+"}) > 90000
+          annotations:
+            consequence: "oppdater-view har ikke kjørt det siste døgnet"
+            action: |-
+              Sjekk hva som kan ha gått galt ved å sjekke logger i nais console:
+              https://console.nav.cloud.nais.io/team/pia/prod-gcp/job/pia-jobbsender-oppdater-view
+          labels:
+            namespace: pia
+            severity: warning
+        - alert: [pia-jobbsender-rydde-urorte-saker] Har ikke sendt jobb-melding 'ryddeIUrørteSaker'
+          expr: time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-rydde-urorte-saker.+"}) > 90000
+          annotations:
+            consequence: "rydde-urorte-saker har ikke kjørt det siste døgnet"
+            action: |-
+              Sjekk hva som kan ha gått galt ved å sjekke logger i nais console:
+              https://console.nav.cloud.nais.io/team/pia/prod-gcp/job/pia-jobbsender-rydde-urorte-saker
+          labels:
+            namespace: pia
+            severity: warning
+        - alert: [pia-jobbsender-prosesser-planlagte-hendelser] Har ikke sendt jobb-melding 'prosesserPlanlagteHendelser'
+          expr: time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-prosesser-planlagte-hendelser.+"}) > 90000
+          annotations:
+            consequence: "prosesser-planlagte-hendelser har ikke kjørt det siste døgnet"
+            action: |-
+              Sjekk hva som kan ha gått galt ved å sjekke logger i nais console:
+              https://console.nav.cloud.nais.io/team/pia/prod-gcp/job/pia-jobbsender-prosesser-planlagte-hendelser
+          labels:
+            namespace: pia
+            severity: warning
