@@ -4,7 +4,6 @@ metadata:
   labels:
     team: pia
   name: pia-jobbsender-{{ JOBB_NAVN_NAISVENNLIG }}
-
   namespace: pia
 spec:
   image: {{ image }}
@@ -12,6 +11,16 @@ spec:
   timeZone: "UTC"
   kafka:
     pool: {{ kafkaPool }}
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
+      destinations:
+        - id: "grafana-lgtm"
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
   env:
     - name: JOBB
       value: {{ JOBB }}
