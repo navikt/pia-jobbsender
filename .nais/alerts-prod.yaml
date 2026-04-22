@@ -31,7 +31,7 @@ spec:
             namespace: pia
             severity: warning
         - alert: Har ikke sendt jobb-melding 'prosesserPlanlagteHendelser'
-          expr: time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-prosesser-planlagte-hendelser.+"}) > 90000
+          expr: absent(kube_job_status_completion_time{job_name=~"pia-jobbsender-prosesser-planlagte-hendelser.+"}) OR (time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-prosesser-planlagte-hendelser.+"}) > 90000)
           annotations:
             consequence: "prosesser-planlagte-hendelser har ikke kjørt det siste døgnet"
             action: |-
