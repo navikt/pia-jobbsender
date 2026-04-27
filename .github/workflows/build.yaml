@@ -84,7 +84,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        cluster: [dev]
+        cluster: [dev, prod]
     permissions:
       id-token: write
     name: Deployer nattlig prosessering av planlagte hendelser til ${{ matrix.cluster }}-gcp
