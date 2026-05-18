@@ -1,0 +1,20 @@
+apiVersion: nais.io/v1
+kind: Naisjob
+metadata:
+  labels:
+    team: pia
+  name: pia-jobbsender-{{ JOBB_NAVN_NAISVENNLIG }}
+  namespace: pia
+spec:
+  image: {{ image }}
+  schedule: "{{ SCHEDULE }}"
+  timeZone: "UTC"
+  kafka:
+    pool: {{ kafkaPool }}
+  env:
+    - name: JOBB
+      value: {{ JOBB }}
+    - name: JOBBLYTTER_TOPIC
+      value: pia.jobblytter-v1
+    - name: KAFKA_CLIENT_ID
+      value: pia-jobbsender-daglig

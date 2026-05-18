@@ -38,6 +38,7 @@ on:
           - 'virksomhetSykefraværsstatistikkDvhImport'
           - 'virksomhetMetadataSykefraværsstatistikkDvhImport'
           - 'publiseringsdatoDvhImport'
+          - 'sjekkPubliseringsdatoOgImporter'
           - 'kalkulerResulterendeStatusForHendelser'
           - 'prosesserPlanlagtHendelse'
           - 'prosesserPlanlagteHendelser'

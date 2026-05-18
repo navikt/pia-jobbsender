@@ -100,6 +100,47 @@ jobs:
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
           VAR: JOBB=prosesserPlanlagteHendelser,JOBB_NAVN_NAISVENNLIG=prosesser-planlagte-hendelser
 
+  deploy-sjekk-publiseringsdato:
+    needs: build
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    permissions:
+      id-token: write
+    name: Deployer daglig publiseringsdato-sjekk til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          IMAGE: ${{ needs.build.outputs.image }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_daglig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=sjekkPubliseringsdatoOgImporter,JOBB_NAVN_NAISVENNLIG=sjekk-publiseringsdato,SCHEDULE=0 6 * * *
+
+
+  deploy-publiseringsdato-dvh-import:
+    needs: build
+    strategy:
+      matrix:
+        cluster: [dev, prod]
+    permissions:
+      id-token: write
+    name: Deployer daglig publiseringsdato-import til ${{ matrix.cluster }}-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy application to ${{ matrix.cluster }}-gcp
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          IMAGE: ${{ needs.build.outputs.image }}
+          CLUSTER: ${{ matrix.cluster }}-gcp
+          RESOURCE: .nais/nais_daglig.yaml
+          VARS: .nais/${{ matrix.cluster }}-gcp.yaml
+          VAR: JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import,SCHEDULE=0 19 * * *
+
 
   trivy-scan:
     name: Scanner docker image med Trivy
