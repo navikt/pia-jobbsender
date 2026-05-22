@@ -104,7 +104,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        cluster: [dev, prod]
+        cluster: [dev]
     permissions:
       id-token: write
     name: Deployer daglig publiseringsdato-sjekk til ${{ matrix.cluster }}-gcp
@@ -125,7 +125,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        cluster: [dev, prod]
+        cluster: [dev]
     permissions:
       id-token: write
     name: Deployer daglig publiseringsdato-import til ${{ matrix.cluster }}-gcp
