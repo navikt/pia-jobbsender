@@ -110,7 +110,7 @@ jobs:
     name: Deployer daglig publiseringsdato-sjekk til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -131,7 +131,7 @@ jobs:
     name: Deployer daglig publiseringsdato-import til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
