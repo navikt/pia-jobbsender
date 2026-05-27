@@ -52,7 +52,40 @@ on:
         type: string
 
 jobs:
+  build:
+    permissions:
+      contents: write
+      id-token: write
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v5
+        with:
+          dependency-graph: generate-and-submit
+      - name: Compile, run tests and build
+        run: ./gradlew test installDist
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+        with:
+          platforms: linux/amd64,linux/arm64
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+      - name: Build and push docker image
+        uses: nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: pia
+          tag: ${{ github.ref == 'refs/heads/main' && 'latest' || 'branch_latest' }}
+    outputs:
+      image: ${{ steps.docker-push.outputs.image }}
+
   deploy:
+    needs: build
     permissions:
       id-token: write
     name: Deployer jobb "${{ github.event.inputs.job-name  }}" til "${{ github.event.inputs.cluster-name  }}"
@@ -63,7 +96,7 @@ jobs:
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
         uses: nais/deploy/actions/deploy@v2
         env:
-          IMAGE: europe-north1-docker.pkg.dev/nais-management-233d/pia/pia-jobbsender:latest
+          IMAGE: ${{ needs.build.outputs.image }}
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
