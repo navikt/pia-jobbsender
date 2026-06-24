@@ -27,8 +27,6 @@ on:
           - 'iaSakSamarbeidsplanBigqueryEksport'
           - 'næringsImport'
           - 'materializedViewOppdatering'
-          - 'ryddeIUrørteSaker'
-          - 'ryddeIUrørteSakerTørrKjør'
           - 'alleKategorierSykefraværsstatistikkDvhImport'
           - 'landSykefraværsstatistikkDvhImport'
           - 'sektorSykefraværsstatistikkDvhImport'

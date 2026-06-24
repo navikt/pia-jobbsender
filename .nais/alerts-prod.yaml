@@ -20,16 +20,6 @@ spec:
           labels:
             namespace: pia
             severity: warning
-        - alert: Har ikke sendt jobb-melding 'ryddeIUrørteSaker'
-          expr: time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-rydde-urorte-saker.+"}) > 90000
-          annotations:
-            consequence: "rydde-urorte-saker har ikke kjørt det siste døgnet"
-            action: |-
-              Sjekk hva som kan ha gått galt ved å sjekke logger i nais console:
-              https://console.nav.cloud.nais.io/team/pia/prod-gcp/job/pia-jobbsender-rydde-urorte-saker
-          labels:
-            namespace: pia
-            severity: warning
         - alert: Har ikke sendt jobb-melding 'prosesserPlanlagteHendelser'
           expr: time() - max(kube_job_status_completion_time{job_name=~"pia-jobbsender-prosesser-planlagte-hendelser.+"}) > 90000
           annotations:
