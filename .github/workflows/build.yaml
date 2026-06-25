@@ -15,7 +15,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -50,7 +50,7 @@ jobs:
     name: Deployer nattlig view-oppdatering til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -70,7 +70,7 @@ jobs:
     name: Deployer nattlig prosessering av planlagte hendelser til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -90,7 +90,7 @@ jobs:
     name: Deployer daglig publiseringsdato-sjekk til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -111,7 +111,7 @@ jobs:
     name: Deployer daglig publiseringsdato-import til ${{ matrix.cluster }}-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
       - name: Deploy application to ${{ matrix.cluster }}-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
@@ -132,7 +132,7 @@ jobs:
       id-token: write # for nais/login
     runs-on: ubuntu-latest
     steps:
-      - uses: navikt/pia-actions/trivy-scan@b8ec125fe3d75ffdbf958c3546ba0aeafa689be0 # v1.1.13
+      - uses: navikt/pia-actions/trivy-scan@8ddfc1fa8cc7cb44df7fc768043658d774693629 # v1.1.14
         with:
           image: ${{ needs.build.outputs.image }}
           team: pia
