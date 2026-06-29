@@ -57,8 +57,8 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: actions/setup-java@v5
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-java@v5.3.0
         with:
           distribution: temurin
           java-version: 25
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
         uses: nais/deploy/actions/deploy@v2
         env:
