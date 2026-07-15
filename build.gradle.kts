@@ -1,9 +1,9 @@
-val logbackVersion = "1.5.34"
+val logbackVersion = "1.5.37"
 val logstashLogbackEncoderVersion = "9.0"
 val opentelemetryLogbackMdcVersion = "2.29.0-alpha"
 
 plugins {
-    kotlin("jvm") version "2.3.21"
+    kotlin("jvm") version "2.4.0"
     id("application")
 }
 
@@ -14,15 +14,15 @@ repositories {
 
 dependencies {
     // Kafka
-    implementation("at.yawk.lz4:lz4-java:1.11.0")
-    implementation("org.apache.kafka:kafka-clients:4.3.0") {
+    implementation("at.yawk.lz4:lz4-java:1.11.1")
+    implementation("org.apache.kafka:kafka-clients:4.3.1") {
         // "Fikser CVE-2025-12183 - lz4-java >1.8.1 har sårbar versjon (transitive dependency fra kafka-clients:4.1.0)"
         exclude("org.lz4", "lz4-java")
     }
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     implementation("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:$opentelemetryLogbackMdcVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.21")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.4.0")
 
     constraints {
         implementation("tools.jackson.core:jackson-core") {
