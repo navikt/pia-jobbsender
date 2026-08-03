@@ -83,6 +83,7 @@ jobs:
           VAR: SCHEDULE=1 2 * * *,JOBB=prosesserPlanlagteHendelser,JOBB_NAVN_NAISVENNLIG=prosesser-planlagte-hendelser
 
   # Deploy daglige jobber
+  # Sjekk publiseringsdato og importer sykefraværsstatistikk (denne kjører - foreløpig - med parameter DRY_RUN for å unngå utsending av Kafka meldinger i dev)
   deploy-sjekk-publiseringsdato:
     needs: build
     strategy:
@@ -101,8 +102,9 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_daglig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: SCHEDULE=5 8 * * *,JOBB=sjekkPubliseringsdatoOgImporter,JOBB_NAVN_NAISVENNLIG=sjekk-publiseringsdato
+          VAR: SCHEDULE=5 8 * * *,PARAMETER=DRY_RUN,JOBB=sjekkPubliseringsdatoOgImporter,JOBB_NAVN_NAISVENNLIG=sjekk-publiseringsdato
 
+# Import av publiseringsdato(er) (denne kjører - foreløpig - med parameter DRY_RUN for å unngå utsending av Kafka meldinger i dev)
   deploy-publiseringsdato-dvh-import:
     needs: build
     strategy:
@@ -121,7 +123,7 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_daglig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: SCHEDULE=0 21 * * *,JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import
+          VAR: SCHEDULE=1 15 * * *,PARAMETER=DRY_RUN,JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import
 
   trivy-scan:
     name: Scanner docker image med Trivy
