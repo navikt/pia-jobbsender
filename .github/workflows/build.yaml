@@ -123,7 +123,7 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_daglig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: SCHEDULE=1 15 * * *,PARAMETER=DRY_RUN,JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import
+          VAR: SCHEDULE=25 15 * * *,PARAMETER=DRY_RUN,JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import
 
   trivy-scan:
     name: Scanner docker image med Trivy
