@@ -7,8 +7,8 @@ metadata:
   namespace: pia
 spec:
   image: {{ image }}
-  schedule: "1 0 * * *" # kjør nattlig
-  timeZone: "UTC"
+  schedule: "{{ SCHEDULE }}"
+  timeZone: "Europe/Oslo"
   kafka:
     pool: {{ kafkaPool }}
   observability:

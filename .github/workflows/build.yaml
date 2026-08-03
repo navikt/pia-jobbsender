@@ -41,6 +41,7 @@ jobs:
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
+# Deploy nattlige jobber
   deploy-oppdater-view:
     needs: build
     strategy:
@@ -59,7 +60,7 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_nattlig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: JOBB=materializedViewOppdatering,JOBB_NAVN_NAISVENNLIG=oppdater-view
+          VAR: SCHEDULE=0 1 * * *,JOBB=materializedViewOppdatering,JOBB_NAVN_NAISVENNLIG=oppdater-view
 
   deploy-prosesser-planlagte-hendelser:
     needs: build
@@ -79,8 +80,9 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_nattlig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: JOBB=prosesserPlanlagteHendelser,JOBB_NAVN_NAISVENNLIG=prosesser-planlagte-hendelser
+          VAR: SCHEDULE=1 2 * * *,JOBB=prosesserPlanlagteHendelser,JOBB_NAVN_NAISVENNLIG=prosesser-planlagte-hendelser
 
+  # Deploy daglige jobber
   deploy-sjekk-publiseringsdato:
     needs: build
     strategy:
@@ -99,8 +101,7 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_daglig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: JOBB=sjekkPubliseringsdatoOgImporter,JOBB_NAVN_NAISVENNLIG=sjekk-publiseringsdato,SCHEDULE=0 6 * * *
-
+          VAR: SCHEDULE=5 8 * * *,JOBB=sjekkPubliseringsdatoOgImporter,JOBB_NAVN_NAISVENNLIG=sjekk-publiseringsdato
 
   deploy-publiseringsdato-dvh-import:
     needs: build
@@ -120,8 +121,7 @@ jobs:
           CLUSTER: ${{ matrix.cluster }}-gcp
           RESOURCE: .nais/nais_daglig.yaml
           VARS: .nais/${{ matrix.cluster }}-gcp.yaml
-          VAR: JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import,SCHEDULE=0 19 * * *
-
+          VAR: SCHEDULE=0 21 * * *,JOBB=publiseringsdatoDvhImport,JOBB_NAVN_NAISVENNLIG=publiseringsdato-dvh-import
 
   trivy-scan:
     name: Scanner docker image med Trivy
