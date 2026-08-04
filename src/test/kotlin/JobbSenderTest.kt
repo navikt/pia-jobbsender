@@ -14,7 +14,7 @@ class JobbSenderTest {
 
     @Test
     fun `sjekk jsonifisering`() {
-        val json = jobbSender.jsonifiser("jobb", "applikasjon", "ekstraInfo")
+        val json = jobbSender.jsonifiser(jobb = "jobb", applikasjon = "applikasjon", parameter = "ekstraInfo")
         assert(json.contains("\"jobb\": \"jobb\","))
         assert(json.contains("\"applikasjon\": \"applikasjon\","))
         assert(json.contains("\"parameter\": \"ekstraInfo\","))

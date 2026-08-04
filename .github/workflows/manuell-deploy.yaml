@@ -10,6 +10,14 @@ on:
         options:
           - 'prod-gcp'
           - 'dev-gcp'
+      target-application-name:
+        description: 'Applikasjon som det skal kjøre jobben'
+        required: true
+        default: 'lydia-api'
+        type: choice
+        options:
+          - 'lydia-api'
+          - 'pia-dvh-import'
       job-name:
         description: 'Jobb som skal kjøres'
         required: true
@@ -91,4 +99,4 @@ jobs:
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
           RESOURCE: .nais/nais.yaml
           VARS: .nais/${{ github.event.inputs.cluster-name  }}.yaml
-          VAR: JOBB=${{ github.event.inputs.job-name  }},PARAMETER=${{ github.event.inputs.parameter-value }},RUN_ID=${{ github.run_id }}
+          VAR: JOBB=${{ github.event.inputs.job-name  }},APPLIKASJON=${{ github.event.inputs.target-application-name  }},PARAMETER=${{ github.event.inputs.parameter-value }},RUN_ID=${{ github.run_id }}

@@ -40,10 +40,23 @@ class KafkaConfig(
         )
 }
 
+/**
+ * Applikasjonskonfigurasjon som hentes fra miljøvariabler ved oppstart.
+ *
+ * Inneholder kjøretidsparametrene som styrer hvilken batchjobb som skal kjøres og hvordan den skal oppføre seg.
+ * Beregnet på å instansieres én gang per jobkjøring.
+ *
+ * @property jobb Navnet på jobben som skal kjøres (fra miljøvariabel `JOBB`).
+ *   Bestemmer hvilken [Jobb]-implementasjon som velges og kjøres.
+ * @property applikasjon Valgfri identifikator for applikasjonen som skal kjøre jobben (fra miljøvariabel `APPLIKASJON`, standard: `""`).
+ *   Kan brukes til logging eller for å skille kontekst når samme jobb kalles fra flere kilder.
+ * @property parameter Valgfri parameter som sendes til jobben (fra miljøvariabel `PARAMETER`, standard: `""`).
+ *   For eksempel deaktiverer `DRY_RUN` sideffekter som publisering av Kafka-meldinger.
+ */
 class ApplikasjonsConfig(
     val jobb: String = getEnvVar("JOBB"),
+    val applikasjon: String = getEnvVar("APPLIKASJON", ""),
     val parameter: String = getEnvVar("PARAMETER", ""),
-    val applikasjon: String = "pia-jobbsender",
 )
 
 fun getEnvVar(
