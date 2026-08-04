@@ -22,6 +22,8 @@ spec:
   env:
     - name: JOBB
       value: {{ JOBB }}
+    - name: APPLIKASJON
+      value: {{ APPLIKASJON }}
     - name: PARAMETER
       value: {{ PARAMETER }}
     - name: RUN_ID
