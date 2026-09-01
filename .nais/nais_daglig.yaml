@@ -26,8 +26,6 @@ spec:
       value: {{ JOBB }}
     - name: APPLIKASJON
       value: {{ APPLIKASJON }}
-    - name: PARAMETER
-      value: {{ PARAMETER }}
     - name: JOBBLYTTER_TOPIC
       value: pia.jobblytter-v1
     - name: KAFKA_CLIENT_ID
