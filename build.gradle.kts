@@ -1,6 +1,6 @@
-val logbackVersion = "1.6.1"
+val logbackVersion = "1.6.3"
 val logstashLogbackEncoderVersion = "9.0"
-val opentelemetryLogbackMdcVersion = "2.30.0-alpha"
+val opentelemetryLogbackMdcVersion = "2.31.1-alpha"
 
 plugins {
     kotlin("jvm") version "2.4.10"
