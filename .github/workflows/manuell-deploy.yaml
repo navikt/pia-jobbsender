@@ -94,7 +94,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Deploy application to ${{ github.event.inputs.cluster-name  }}
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           IMAGE: ${{ needs.build.outputs.image }}
           CLUSTER: ${{ github.event.inputs.cluster-name  }}
