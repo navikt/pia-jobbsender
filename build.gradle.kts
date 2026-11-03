@@ -25,6 +25,10 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test:2.4.10")
 
     constraints {
+        implementation("org.xerial.snappy:snappy-java") {
+            version { require("1.1.10.12") }
+            because("CVE-2026-93451")
+        }
         implementation("tools.jackson.core:jackson-core") {
             version { require("3.2.1") }
             because("versjoner <= 3.2.1 har sårbarhet. inkludert i logstash-logback-encoder:9.0")
