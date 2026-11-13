@@ -24,7 +24,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-      - uses: gradle/actions/setup-gradle@v6.4.0
+      - uses: gradle/actions/setup-gradle@v6.4.1
         with:
           cache-provider: basic
           dependency-graph: generate-and-submit
@@ -58,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Deploy application to ${{ matrix.cluster }}-gcp
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           IMAGE: ${{ needs.build.outputs.image }}
           CLUSTER: ${{ matrix.cluster }}-gcp
@@ -78,7 +78,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Deploy application to ${{ matrix.cluster }}-gcp
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           IMAGE: ${{ needs.build.outputs.image }}
           CLUSTER: ${{ matrix.cluster }}-gcp
@@ -100,7 +100,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Deploy application to ${{ matrix.cluster }}-gcp
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           IMAGE: ${{ needs.build.outputs.image }}
           CLUSTER: ${{ matrix.cluster }}-gcp
@@ -121,7 +121,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Deploy application to ${{ matrix.cluster }}-gcp
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           IMAGE: ${{ needs.build.outputs.image }}
           CLUSTER: ${{ matrix.cluster }}-gcp
