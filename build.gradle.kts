@@ -1,4 +1,4 @@
-val logbackVersion = "1.6.6"
+val logbackVersion = "1.6.7"
 val logstashLogbackEncoderVersion = "9.0"
 val opentelemetryLogbackMdcVersion = "2.33.1-alpha"
 
